@@ -2,6 +2,7 @@ version: "2"
 services:
    namenode:
       image: apache/hadoop:3
+      container_name: namenode
       hostname: namenode
       command: ["hdfs", "namenode"]
       ports:
@@ -14,6 +15,7 @@ services:
           ENSURE_NAMENODE_DIR: "/tmp/hadoop-root/dfs/name"
    datanode:
       image: apache/hadoop:3
+      container_name: datanode
       command: ["hdfs", "datanode"]
       env_file:
         - ./config      
@@ -21,6 +23,7 @@ services:
         - ./data/datanode:/tmp/hadoop-root/dfs/data
    resourcemanager:
       image: apache/hadoop:3
+      container_name: resourcemanager
       hostname: resourcemanager
       command: ["yarn", "resourcemanager"]
       ports:
@@ -31,6 +34,7 @@ services:
         - ./test.sh:/opt/test.sh
    nodemanager:
       image: apache/hadoop:3
+      container_name: nodemanager
       command: ["yarn", "nodemanager"]
       env_file:
         - ./config
