@@ -15,12 +15,14 @@ for line in sys.stdin:
         except IndexError:
             continue
 
-        
         if tmp == '' or tmp.startswith('+9999'):
             continue
 
         try:
             tmp_value = float(tmp.replace(',', '.'))
+
+            tmp_value = tmp_value / 10
+
         except ValueError:
             continue
 
